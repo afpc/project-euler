@@ -1,2 +1,2 @@
 # project-euler
-Solutions to Project Euler in Haskell.
+Personal take on the problems defined in [Project Euler](https://projecteuler.net/) written Haskell, maybe other languages will follow.
