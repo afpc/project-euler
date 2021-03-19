@@ -1,7 +1,6 @@
 -- What is the largest prime factor of the number 600851475143?
 
-main = do 
-          print . maximum . primeFactorisation $ 600851475143
+main = print . maximum . primeFactorisation $ 600851475143
 
 -- Dumb method 
 findSmallestDivisor :: Int -> Int -> Int

@@ -2,5 +2,7 @@
 
 import Data.List
 
-solution :: Int -> Int
-solution nb = sum . nub $ [x | x <- [1..(nb-1)], y <- [3,5] , mod x y  == 0]
+main = print . multiples $ 1000
+
+multiples :: Int -> Int
+multiples nb = sum . nub $ [x | x <- [1..(nb-1)], y <- [3,5] , mod x y  == 0]
