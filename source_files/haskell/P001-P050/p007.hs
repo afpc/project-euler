@@ -1,7 +1,6 @@
 -- What is the 10001st prime number?
 
 main = print (((primes [2])!!10000)!!10000)
---main = print . take 100 $ (primes [2])
 
 primes :: [Int] -> [[Int]]
 primes start = iterate nextPrime start
