@@ -9,9 +9,11 @@
  - 1 +  2 +  3 + ... +   n = (n * (n + 1)) / 2
  - -> for more info search for 'triangular number'.
  -}
-sum' n m = div (n * t * (t + 1)) 2
-  where t = div m n
+sum' : Int -> Int -> Int
+sum' n m = div (n * t * (t + 1)) 2 where 
+  t : Int
+  t = div m n
 
-main :: IO ()
-main = print ((sum' 3 999) + (sum' 5 999) - (sum' 15 999)
+main : IO ()
+main = print ((sum' 3 999) + (sum' 5 999) - (sum' 15 999))
 
