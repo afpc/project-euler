@@ -2,8 +2,8 @@
 
 {- t = n(n+1)/2
  - n and n+1 are coprime and thus have no common divisor.
- - d(t) = d(n/2) * d(n+1)  | n is even
- - d(t)_= d(n)   * d(n+1n) | n is odd
+ - d(t) = d(n/2) * d(n+1)   | n is even
+ - d(t) = d(n)   * d(n+1/n) | n is odd
  -}
 numberOfDivisors :: Int -> Int
 numberOfDivisors n  
@@ -15,5 +15,4 @@ numberOfDivisors n
 main :: IO ()
 main = print (div (n * (n + 1)) 2) -- sum of [1..n]
     where n = head (dropWhile (\x -> (numberOfDivisors x) <= 500) [1..])
-
 
