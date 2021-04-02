@@ -18,10 +18,12 @@ findSolutions = [ n | n <- [1..1000],
                       c <- [1..n],
                       b <- [c..(n-c)],
                       let a = n-b-c,
+                      a > b, 
+                      a > c,
                       a^2 == b^2 + c^2]
 
 findSolutions2 :: Int -> (Int,Int)
-findSolutions2 n = (n, length [n | a <- [1..n],
-                                   b <- [1..(n-a)],
-                                   let c = n-b-a,
+findSolutions2 n = (n, length [n | c <- [1..n],
+                                   b <- [c..(n-c)],
+                                   let a = n-b-c,
                                    a^2 == b^2 + c^2])
