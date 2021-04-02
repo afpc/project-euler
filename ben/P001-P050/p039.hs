@@ -10,7 +10,6 @@ import Data.List
 import Data.Ord
 
 main = print . snd . maximumBy (comparing fst) . map (\ a -> (length a, head a)) . group $ findSolutions
---main = print . fst . maximumBy (comparing snd) . map findSolutions2 $ [1..1000]
 
 findSolutions :: [Int]
 findSolutions = [ n | n <- [1..1000], 
@@ -23,14 +22,3 @@ findSolutions = [ n | n <- [1..1000],
                       b < a + c,
                       c < a + b,
                       a^2 == b^2 + c^2]
-
-findSolutions2 :: Int -> (Int,Int)
-findSolutions2 n = (n, length [n | c <- [1..n],
-                                   b <- [c..(n-c)],
-                                   let a = n-b-c,
-                                   a > b, 
-                                   a > c,
-                                   a < b + c,
-                                   b < a + c,
-                                   c < a + b,
-                                   a^2 == b^2 + c^2])
