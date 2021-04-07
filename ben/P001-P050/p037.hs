@@ -9,6 +9,13 @@ NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 import Data.List
 
 -- Kind of inefficient.
+-- Idea: Generate numbers instead of checking primes.
+--       Numbers can start with 2, 3, 5, 7
+--       Middle can be 1, 3, 7, 9
+--       End can be 3, 7, 9
+--       Interesting functions: tails, concatMap, all
+--       Maybe use div and mod instead of strings? 
+--       Probably better with isPrime as trialDivision than sieve. 
 main = print . sum . take 11 $ getNumbers
 
 getNumbers :: [Int]
