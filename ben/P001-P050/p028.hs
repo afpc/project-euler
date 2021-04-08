@@ -16,10 +16,22 @@ limit :: Int
 limit = 1001
 
 main :: IO()
-main = print . sum . next 2 $ [1] 
+-- main = print . sum . next 2 $ [1] 
+main = print . sum $ calculate
 
 next :: Int -> [Int] -> [Int]
 next diff list
     | diff > limit = list
     | otherwise = next (diff + 2) (list ++ newList)
         where newList = tail . take 5 .iterate (diff+) . last $ list
+
+-- Even smarter: 
+-- If n is the size of the square,
+-- the upper right corner is represented by n^2,
+-- the upper left corner is represented by n^2-n+1,
+-- the bottom left corner is represented by n^2-2n+2,
+-- the bottom right corner is represented by n^2-3n+3.
+-- Summed up this equals 4n^2-6n+5
+
+calculate :: [Int]
+calculate = 1 : [4*n^2-6*n+6 | n <- [3,5..limit]]
