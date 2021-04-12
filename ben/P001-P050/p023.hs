@@ -12,9 +12,6 @@ import Data.List
 import qualified Data.Set as Set
 
 main = print (sum [1..limit] - sum abundantSumNbs)
---main = print . sum $ notAbundantSumNbs
---main = print . sum . notAbundantSumNbs2 (nub abundantSumNbs) $ [12..limit]
---main = print . sum $ notAbundantSumNbs3
 
 limit :: Int
 limit = 28123
@@ -52,28 +49,6 @@ abundantSumNbs = unique [n | n1 <- abundantNbs,
                              n2 >= n1, 
                              let n = n1 + n2, 
                              n <= limit]
-
-abundantSumNbs2 :: [Int]
-abundantSumNbs2 = let nbs = abundantNbs
-                  in [n | n1 <- [0..(length nbs - 1)],
-                          n2 <- [n1..(length nbs - 1)], 
-                          let n = abundantNbs!!n1 + abundantNbs!!n2, 
-                          n <= limit]
-
-notAbundantSumNbs :: [Int]
-notAbundantSumNbs = [12..limit] \\ abundantSumNbs
-
-notAbundantSumNbs2 :: [Int] -> [Int] -> [Int]
-notAbundantSumNbs2 [] list = list
-notAbundantSumNbs2 (x:xs) list = notAbundantSumNbs2 xs (delete x list)
-
-notAbundantSumNbs3 :: [Int]
-notAbundantSumNbs3 = [n | n <- [1..limit],
-                          noAbundantSum n]
-
-noAbundantSum :: Int -> Bool
-noAbundantSum nb = and [n0 + n1 /= nb | n0 <- (takeWhile (< nb) abundantNbs),
-                                        n1 <- (takeWhile (<= (nb - n0)) abundantNbs)]
 
 -- Help functions.
  
