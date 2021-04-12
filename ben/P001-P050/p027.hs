@@ -19,9 +19,9 @@ Find the product of the coefficients, a and b, for the quadratic expression that
 import Data.Ord
 import Data.List
 
-main = print . maximumBy (comparing trd) $ checkAllNumbers
---main = print . (\ (a,b,_) -> a * b) . maximumBy (comparing trd) $ checkAllNumbers
+main = print . (\ (a,b,_) -> a * b) . maximumBy (comparing trd) $ checkAllNumbers
 
+-- b has to be prime since 0^2 + a0 + b has to be prime.
 checkAllNumbers :: [(Int,Int,Int)]
 checkAllNumbers = let primes = filter isPrime [2..1000]
                   in [(a,b,l) | a <- [-999..999],
