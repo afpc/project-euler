@@ -18,31 +18,21 @@ Find the product of the coefficients, a and b, for the quadratic expression that
 
 import Data.Ord
 import Data.List
+import Data.Numbers.Primes
 
 main = print . (\ (a,b,_) -> a * b) . maximumBy (comparing trd) $ checkAllNumbers
 
 -- b has to be prime since 0^2 + a0 + b has to be prime.
 checkAllNumbers :: [(Int,Int,Int)]
-checkAllNumbers = let primes = filter isPrime [2..1000]
+checkAllNumbers = let p = takeWhile (<1000) primes
                   in [(a,b,l) | a <- [-999..999],
-                                b <- primes,
+                                b <- p,
                                 let l = length (generatePrimeList a b),
                                 l > 40]
 
 -- According to formula n^2+an+b
 generatePrimeList :: Int -> Int -> [Int]
 generatePrimeList a b = takeWhile (isPrime) (map (\ n -> n^2 + a*n + b) [0..])
-
-isPrime :: Int -> Bool 
-isPrime nb
-    | nb <= 0 = False 
-    | otherwise = length primes == 0
-    where root = floor . sqrt . fromIntegral $ nb
-          k1 = [6*k+1 | k <- [1..root]]
-          k2 = [6*k-1 | k <- [1..root]]
-          f = [2,3] ++ k1 ++ k2
-          primes = [x | x <- f,
-                        mod nb x == 0]
 
 -- Help functions 
 
