@@ -19,4 +19,5 @@ isPrime nb = length primes == 0
           k2 = [6*k-1 | k <- [1..root]]
           f = [2,3] ++ k1 ++ k2
           primes = [x | x <- f,
+                        x /= nb,
                         mod nb x == 0]
