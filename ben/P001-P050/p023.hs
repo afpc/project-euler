@@ -13,8 +13,9 @@ import qualified Data.Set as Set
 
 main = print (sum [1..limit] - sum abundantSumNbs)
 
+-- Improved limit.
 limit :: Int
-limit = 28123
+limit = 20161
 
 -- Conditions for specific numbers
 
