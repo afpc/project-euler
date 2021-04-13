@@ -19,12 +19,12 @@ In the first one-thousand expansions, how many fractions contain a numerator wit
 import Data.Ratio
 
 -- brute force
-main = print . length . filter (\ (a,b) -> length (show a) > length (show b)) $ generateExpansions
+
+-- main = print . length . filter (\ (a,b) -> length (show a) > length (show b)) $ generateExpansions
 
 generateExpansions :: [(Integer,Integer)]
 generateExpansions = [ (numerator ex, denominator ex) | n <- [1..1000],
                                                         let ex = expansion n]
-                         
 
 -- input is recursion depth. 
 expansion :: Int -> Rational 
@@ -33,3 +33,16 @@ expansion depth = (1 % 1) + (1 / (fraction depth))
 fraction :: Int -> Rational
 fraction 1 = (2 % 1)
 fraction n = (2 % 1) + (1 / fraction (n-1))
+
+-- somewhat smarter
+
+main = print . length . select . take 1000 $ generateExpansions' 
+
+select :: [Rational] -> [Rational]
+select = filter (\ a -> length (show (numerator a)) > length (show (denominator a)))
+
+generateExpansions' :: [Rational]
+generateExpansions' = map (+1) . iterate expansion' $ (1 % 2)
+
+expansion' :: Rational -> Rational
+expansion' nb = 1 / ((2 % 1) + nb)
