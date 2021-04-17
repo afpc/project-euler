@@ -17,13 +17,17 @@ import qualified Data.Map as Map
 import Data.Ord
 import Data.List
 import Data.Function
+import Data.Char
 
 -- Pure brute force
 --main = print . length . filter (==True) $ iteration
 
+squares :: Map.Map Char Int
+squares = Map.fromList [(intToDigit n, n^2)| n <- [0..9]]
+
 next :: Int -> Int 
 next n = sum list
-    where list = map (\x -> (read [x] :: Int)^2) (show n)
+    where list = map (squares Map.!) (show n)
 
 produceChain :: Int -> Bool
 produceChain 1 = False
