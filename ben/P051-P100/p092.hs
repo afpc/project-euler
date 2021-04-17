@@ -35,7 +35,7 @@ iteration = [(produceChain n) | n <- [1..10000000]]
 
 -- Somewhat smarter
 
-main = print . length . filter (== 89) . calculate [1..10000000] $ startMap
+--main = print . length . filter (== 89) . calculate [1..10000000] $ startMap
 
 maxNb :: Int 
 maxNb = 7*9^2
@@ -74,3 +74,19 @@ calculate' [] _ = []
 calculate' ((a,b):xs) m = (end, b) : calculate' xs newMap
     where end = getEnd a m
           newMap = Map.insert a end m
+
+-- Fourth try 
+
+main = print . length . checkAll $ buildMap
+
+checkAll :: Map.Map Int Int -> [Int]
+checkAll m = [nb | nb <- [1..10000000],
+                   if nb <= maxNb
+                       then m Map.! nb == 89
+                   else m Map.! (next nb) == 89]
+
+buildMap :: Map.Map Int Int
+buildMap = f [1..maxNb] startMap
+    where f :: [Int] -> Map.Map Int Int -> Map.Map Int Int
+          f [] m = m 
+          f (x:xs) m = f xs (Map.insert x (getEnd x m) m)
